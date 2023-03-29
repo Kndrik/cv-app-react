@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import SectionTitle from './SectionTitle';
 
-class GeneralInfos extends Component {
+class GeneralSection extends Component {
     constructor(props) {
         super(props);
     }
@@ -8,10 +9,10 @@ class GeneralInfos extends Component {
     render() {
         return (
             <div className="General">
-                <h2>General Informations</h2>
+                <SectionTitle title="General Informations"/>
             </div>
         );
     }
 }
 
-export default GeneralInfos;
+export default GeneralSection;

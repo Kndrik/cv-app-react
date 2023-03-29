@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import SectionTitle from './SectionTitle';
 
-class EducationalExp extends Component {
+class EducationalSection extends Component {
     constructor(props) {
         super(props);
     }
@@ -8,10 +9,10 @@ class EducationalExp extends Component {
     render() {
         return (
             <div className="Educational">
-                <h2>Educational Experience</h2>
+                <SectionTitle title="Educational Experience"/>
             </div>
         );
     }
 }
 
-export default EducationalExp;
+export default EducationalSection;

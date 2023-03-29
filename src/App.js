@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import './styles/App.css';
-import GeneralInfos from "./components/GeneralInfos";
-import EducationalExp from "./components/EducationalExp";
-import PracticalExp from "./components/PracticalExp";
+import GeneralSection from "./components/GeneralSection";
+import EducationalSection from "./components/EducationalSection";
+import PracticalSection from "./components/PracticalSection";
 
 function App() {
   return (
     <div className="App">
       <h1>CV App</h1>
-      <GeneralInfos/>
-      <EducationalExp/>
-      <PracticalExp/>
+      <GeneralSection/>
+      <EducationalSection/>
+      <PracticalSection/>
     </div>
   );
 }
