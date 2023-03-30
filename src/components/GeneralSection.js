@@ -82,7 +82,7 @@ class GeneralSection extends Component {
                 <SectionTitle title="General Informations"/>
                 {
                     this.state.filling ?
-                    <form className="generalForm" onSubmit={this.submitInformations}>
+                    <form onSubmit={this.submitInformations}>
                         <ul>
                             <li>
                                 <label for="firstName">First Name: </label>
