@@ -21,6 +21,8 @@ class EducationalSection extends Component {
         this.editDateOfStudy = this.editDateOfStudy.bind(this);
 
         this.addNewExperience = this.addNewExperience.bind(this);
+        
+        this.removeExperience = this.removeExperience.bind(this);
     }
 
     clickAdd() {
@@ -62,6 +64,12 @@ class EducationalSection extends Component {
         });
     }
 
+    removeExperience(i) {
+        this.setState({
+            experiences: this.state.experiences.filter(e => e != this.state.experiences[i])
+        });
+    }
+
     render() {
         const {schoolName, titleOfStudy, dateOfStudy, experiences} = this.state;
         const experienceList = experiences.map((experience, i) =>
@@ -69,7 +77,7 @@ class EducationalSection extends Component {
                 <p className="schoolName"><span className="dataLabel">School: </span><span>{experience.schoolName}</span></p>
                 <p class="titleOfStudy">{experience.titleOfStudy}</p>
                 <p class="graduation"><span className="dataLabel">Graduation: </span><span>{experience.dateOfStudy}</span></p>
-                <Button className="smallButton" text="Remove"/>
+                <Button clickEvent={() => this.removeExperience(i)} className="smallButton" text="Remove"/>
             </li>
         );
         return (
