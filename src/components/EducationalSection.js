@@ -8,7 +8,7 @@ class EducationalSection extends Component {
 
     render() {
         return (
-            <div className="Educational">
+            <div className="Educational section">
                 <SectionTitle title="Educational Experience"/>
             </div>
         );

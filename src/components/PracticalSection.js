@@ -8,7 +8,7 @@ class PracticalSection extends Component {
 
     render() {
         return (
-            <div>
+            <div className="Practical section">
                 <SectionTitle title="Practical Experience"/>
             </div>
         );

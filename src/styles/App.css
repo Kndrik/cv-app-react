@@ -1,3 +1,8 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .App {
     border: 1px solid black;
     padding: 14px;
@@ -7,4 +12,42 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+Button {
+    height: 40px;
+    min-width: 80px;
+    outline: none;
+    border: none;
+    background-color: rgb(112, 112, 112);
+    color: white;
+    border-radius: 5px;
+}
+
+Button:hover {
+    cursor: pointer;
+    background-color: rgb(120, 120, 120);
+}
+
+.section {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+    width: 100%;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.dataLabel {
+    font-weight: bold;
 }
