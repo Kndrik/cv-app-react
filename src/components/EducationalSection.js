@@ -69,7 +69,7 @@ class EducationalSection extends Component {
                 <p className="schoolName"><span className="dataLabel">School: </span><span>{experience.schoolName}</span></p>
                 <p class="titleOfStudy">{experience.titleOfStudy}</p>
                 <p class="graduation"><span className="dataLabel">Graduation: </span><span>{experience.dateOfStudy}</span></p>
-                <Button className="removeButton" text="Remove"/>
+                <Button className="smallButton" text="Remove"/>
             </li>
         );
         return (

@@ -82,7 +82,7 @@ class GeneralSection extends Component {
                 <SectionTitle title="General Informations"/>
                 {
                     this.state.filling ?
-                    <form onSubmit={this.submitInformations}>
+                    <form className="generalForm" onSubmit={this.submitInformations}>
                         <ul>
                             <li>
                                 <label for="firstName">First Name: </label>
@@ -104,7 +104,7 @@ class GeneralSection extends Component {
                         <Button text="Confirm"/>
                     </form>
                     : this.state.filled ?
-                    <ul>
+                    <ul className="generalList">
                         <li>
                             <span className="dataLabel">First Name: </span><span>{firstName}</span>
                         </li>
@@ -117,7 +117,7 @@ class GeneralSection extends Component {
                         <li>
                             <span className="dataLabel">Phone Number: </span><span>{phone}</span>
                         </li>
-                        <Button clickEvent={this.editInformations} text="Edit"/>
+                        <Button className="smallButton" clickEvent={this.editInformations} text="Edit"/>
                     </ul>
                     :
                     <Button clickEvent={this.clickAdd} text="Add"/>
