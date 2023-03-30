@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -37,6 +41,7 @@ Button:hover {
 }
 
 ul {
+    margin: 0;
     padding: 0;
     list-style: none;
     width: 100%;
@@ -50,4 +55,38 @@ li {
 
 .dataLabel {
     font-weight: bold;
+}
+
+li.educationalElem {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 5px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+}
+
+li p {
+    margin: 0;
+}
+
+.schoolName {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+.titleOfStudy {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    text-align: end;
+}
+
+.gradutation {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+}
+
+.experiencesDiv {
+    width: 100%;
 }

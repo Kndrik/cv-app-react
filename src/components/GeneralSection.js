@@ -117,7 +117,7 @@ class GeneralSection extends Component {
                         <li>
                             <span className="dataLabel">Phone Number: </span><span>{phone}</span>
                         </li>
-                        <Button clickEvent={this.editInformations} text="edit"/>
+                        <Button clickEvent={this.editInformations} text="Edit"/>
                     </ul>
                     :
                     <Button clickEvent={this.clickAdd} text="Add"/>
