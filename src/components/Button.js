@@ -6,9 +6,9 @@ class Button extends Component {
     }
 
     render() {
-        const { clickEvent, text } = this.props;
+        const { clickEvent, text, className } = this.props;
         return (
-            <button onClick={clickEvent}>{text}</button>
+            <button onClick={clickEvent} className={className}>{text}</button>
         );
     }
 }

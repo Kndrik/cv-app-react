@@ -20,12 +20,17 @@ body {
 
 Button {
     height: 40px;
-    min-width: 80px;
+    width: 80px;
     outline: none;
     border: none;
     background-color: rgb(112, 112, 112);
     color: white;
     border-radius: 5px;
+}
+
+.removeButton {
+    justify-self: end;
+    height: 20px;
 }
 
 Button:hover {
@@ -89,4 +94,7 @@ li p {
 
 .experiencesDiv {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
