@@ -1,16 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class SectionTitle extends Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        const { title } = this.props;
-        return (
-            <h2>{title}</h2>
-        );
-    }
+export default function SectionTitle(props) {
+    return <h2>{props.title}</h2>
 }
-
-export default SectionTitle;
