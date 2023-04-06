@@ -1,118 +1,74 @@
-import React, { Component } from 'react';
+import React from 'react';
 import SectionTitle from './SectionTitle';
 import Button from './Button';
+import { useState } from 'react';
 
-class EducationalSection extends Component {
-    constructor(props) {
-        super(props);
+export default function EducationalSection(props) {
+    const [experiences, setExperiences] = useState([]);
+    const [schoolName, setSchoolName] = useState('');
+    const [titleOfStudy, setTitleOfStudy] = useState('');
+    const [dateOfStudy, setDateOfStudy] = useState('');
+    const [filling, setFilling] = useState(false);
 
-        this.state = {
-            experiences: [],
-            schoolName: '',
-            titleOfStudy: '',
-            dateOfStudy: '',
-            filling: false
-        }
-
-        this.clickAdd = this.clickAdd.bind(this);
-
-        this.editSchoolName = this.editSchoolName.bind(this);
-        this.editTitleOfStudy = this.editTitleOfStudy.bind(this);
-        this.editDateOfStudy = this.editDateOfStudy.bind(this);
-
-        this.addNewExperience = this.addNewExperience.bind(this);
-        
-        this.removeExperience = this.removeExperience.bind(this);
+    function clickAdd() {
+        setFilling(true);
     }
 
-    clickAdd() {
-        this.setState({
-            filling: true
-        });
-    }
-
-    addNewExperience(evt) {
+    function addNewExperience(evt) {
         evt.preventDefault();
         const exp = {
-            schoolName: this.state.schoolName,
-            titleOfStudy: this.state.titleOfStudy,
-            dateOfStudy: this.state.dateOfStudy
+            schoolName: schoolName,
+            titleOfStudy: titleOfStudy,
+            dateOfStudy: dateOfStudy
         };
-        const newArray = [...this.state.experiences, exp];
-        this.setState({
-            experiences: newArray,
-            filling: false
-        });
-        console.log(this.state.experiences);
+        const newArray = [...experiences, exp];
+        setExperiences(newArray);
+        setFilling(false);
     }
 
-    editSchoolName(evt) {
-        this.setState({
-            schoolName: evt.target.value
-        });
+    function removeExperience(i) {
+        setExperiences(experiences.filter(e => e != this.state.experiences[i]));
     }
 
-    editTitleOfStudy(evt) {
-        this.setState({
-            titleOfStudy: evt.target.value
-        });
-    }
+    const experienceList = experiences.map((experience, i) =>
+        <li className="educationalElem" key={i}>
+            <p className="schoolName"><span className="dataLabel">School: </span><span>{experience.schoolName}</span></p>
+            <p class="titleOfStudy">{experience.titleOfStudy}</p>
+            <p class="graduation"><span className="dataLabel">Graduation: </span><span>{experience.dateOfStudy}</span></p>
+            <Button clickEvent={() => removeExperience(i)} className="smallButton" text="Remove"/>
+        </li>
+    );
 
-    editDateOfStudy(evt) {
-        this.setState({
-            dateOfStudy: evt.target.value
-        });
-    }
-
-    removeExperience(i) {
-        this.setState({
-            experiences: this.state.experiences.filter(e => e != this.state.experiences[i])
-        });
-    }
-
-    render() {
-        const {schoolName, titleOfStudy, dateOfStudy, experiences} = this.state;
-        const experienceList = experiences.map((experience, i) =>
-            <li className="educationalElem" key={i}>
-                <p className="schoolName"><span className="dataLabel">School: </span><span>{experience.schoolName}</span></p>
-                <p class="titleOfStudy">{experience.titleOfStudy}</p>
-                <p class="graduation"><span className="dataLabel">Graduation: </span><span>{experience.dateOfStudy}</span></p>
-                <Button clickEvent={() => this.removeExperience(i)} className="smallButton" text="Remove"/>
-            </li>
-        );
-        return (
-            <div className="Educational section">
-                <SectionTitle title="Educational Experience"/>
-                {this.state.filling ? 
-                    <>
-                        <ul>{experienceList}</ul>
-                        <form onSubmit={this.addNewExperience}>
-                            <ul>
-                                <li>
-                                    <label for="schoolName">School Name: </label>
-                                    <input type="text" value={schoolName} onChange={this.editSchoolName} id="schoolName"></input>
-                                </li>
-                                <li>
-                                    <label for="titleOfStudy">Title of Study: </label>
-                                    <input type="text" value={titleOfStudy} onChange={this.editTitleOfStudy} id="titleOfStudy"></input>
-                                </li>
-                                <li>
-                                    <label for="dateOfStudy">Graduation date: </label>
-                                    <input type="date" value={dateOfStudy} onChange={this.editDateOfStudy} id="dateOfStudy"></input>
-                                </li>
-                            </ul>
-                            <Button text="Confirm"/>
-                        </form>
-                    </>
-                    :
-                    <div className="experiencesDiv">
-                        <ul>{experienceList}</ul>
-                        <Button clickEvent={this.clickAdd} text="Add"/>
-                    </div>
-                }
-            </div>
-        );
-    }
+    return (
+        <div className="Educational section">
+            <SectionTitle title="Educational Experience"/>
+            {filling ? 
+                <>
+                    <ul>{experienceList}</ul>
+                    <form onSubmit={addNewExperience}>
+                        <ul>
+                            <li>
+                                <label for="schoolName">School Name: </label>
+                                <input type="text" value={schoolName} onChange={(e) => setSchoolName(e.target.value)} id="schoolName"></input>
+                            </li>
+                            <li>
+                                <label for="titleOfStudy">Title of Study: </label>
+                                <input type="text" value={titleOfStudy} onChange={(e) => setTitleOfStudy(e.target.value)} id="titleOfStudy"></input>
+                            </li>
+                            <li>
+                                <label for="dateOfStudy">Graduation date: </label>
+                                <input type="date" value={dateOfStudy} onChange={(e) => setDateOfStudy(e.target.value)} id="dateOfStudy"></input>
+                            </li>
+                        </ul>
+                        <Button text="Confirm"/>
+                    </form>
+                </>
+                :
+                <div className="experiencesDiv">
+                    <ul>{experienceList}</ul>
+                    <Button clickEvent={clickAdd} text="Add"/>
+                </div>
+            }
+        </div>
+    );
 }
-
-export default EducationalSection;
