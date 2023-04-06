@@ -1,108 +1,88 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import SectionTitle from './SectionTitle';
 import Button from './Button';
 
-class PracticalSection extends Component {
-    constructor(props) {
-        super(props);
+export default function PracticalSection(props) {
+    const [experiences, setExperiences] = useState([]);
+    const [companyName, setCompanyName] = useState('');
+    const [jobTitle, setJobTitle] = useState('');
+    const [tasks, setTasks] = useState('');
+    const [from, setFrom] = useState('');
+    const [to, setTo] = useState('');
+    const [filling, setFilling] = useState(false);
 
-        this.state = {
-            experiences: [],
-            companyName: '',
-            jobTitle: '',
-            tasks: '',
-            from: '',
-            to: '',
-            filling: false
-        };
-
-        this.clickAdd = this.clickAdd.bind(this);
-
-        this.addExperience = this.addExperience.bind(this);
+    function clickAdd() {
+        setFilling(true);
     }
 
-    clickAdd() {
-        this.setState({
-            filling: true
-        });
-    }
-
-    addExperience(evt) {
+    function addExperience(evt) {
         evt.preventDefault();
         const exp = {
-            companyName: this.state.companyName,
-            jobTitle: this.state.jobTitle,
-            tasks: this.state.tasks,
-            from: this.state.from,
-            to: this.state.to
+            companyName: companyName,
+            jobTitle: jobTitle,
+            tasks: tasks,
+            from: from,
+            to: to
         };
-        this.setState({
-            experiences: [...this.state.experiences, exp],
-            filling: false
-        });
+        setExperiences([...experiences, exp]);
+        setFilling(false);
     }
 
-    removeExperience(i) {
-        this.setState({
-            experiences: this.state.experiences.filter(e => e != this.state.experiences[i])
-        });
+    function removeExperience(i) {
+        setExperiences(experiences.filter(e => e != experiences[i]));
     }
 
-    render() {
-        const {experiences, companyName, jobTitle, tasks, from, to} = this.state;
-        const experiencesList = experiences.map((experience, i) => {
-            return (
-                <li className="practicalExperience">
-                    <div className="jobTitle">{experience.jobTitle}</div>
-                    <div className="companyName">{experience.companyName}</div>
-                    <div className="tasks">{experience.tasks}</div>
-                    <div className="dates">{experience.from} - {experience.to}</div>
-                    <Button className="smallButton" text="Remove" clickEvent={() => this.removeExperience(i)}/>
-                </li>
-            );
-        })
+    const experiencesList = experiences.map((experience, i) => {
         return (
-            <div className="Practical section">
-                <SectionTitle title="Practical Experience"/>
-                {
-                    this.state.filling ?
-                    <>
-                        <ul>{experiencesList}</ul>
-                        <form onSubmit={this.addExperience}>
-                            <ul>
-                                <li>
-                                    <label for="companyName">Company Name: </label>
-                                    <input type="text" id="companyName" value={companyName} onChange={e => this.setState({companyName: e.target.value})}></input>
-                                </li>
-                                <li>
-                                    <label for="jobTitle">Title: </label>
-                                    <input type="text" id="jobTitle" value={jobTitle} onChange={e => this.setState({jobTitle: e.target.value})}></input>
-                                </li>
-                                <li>
-                                    <label for="tasks">Job description: </label>
-                                    <textarea rows="4" cols="26" id="tasks" value={tasks} onChange={e => this.setState({tasks: e.target.value})}></textarea>
-                                </li>
-                                <li>
-                                    <label for="from">From: </label>
-                                    <input type="date" id="from" value={from} onChange={e => this.setState({from: e.target.value})}></input>
-                                </li>
-                                <li>
-                                    <label for="to">To: </label>
-                                    <input type="date" id="to" value={to} onChange={e => this.setState({to: e.target.value})}></input>
-                                </li>
-                            </ul>
-                            <Button text="Confirm"/>
-                        </form>
-                    </>
-                    :
-                    <>
-                        <ul>{experiencesList}</ul>
-                        <Button clickEvent={this.clickAdd} text="Add"/>
-                    </>
-                }
-            </div>
+            <li className="practicalExperience">
+                <div className="jobTitle">{experience.jobTitle}</div>
+                <div className="companyName">{experience.companyName}</div>
+                <div className="tasks">{experience.tasks}</div>
+                <div className="dates">{experience.from} - {experience.to}</div>
+                <Button className="smallButton" text="Remove" clickEvent={() => removeExperience(i)}/>
+            </li>
         );
-    }
-}
+    });
 
-export default PracticalSection;
+    return (
+        <div className="Practical section">
+            <SectionTitle title="Practical Experience"/>
+            {
+                filling ?
+                <>
+                    <ul>{experiencesList}</ul>
+                    <form onSubmit={addExperience}>
+                        <ul>
+                            <li>
+                                <label for="companyName">Company Name: </label>
+                                <input type="text" id="companyName" value={companyName} onChange={e => setCompanyName(e.target.value)}></input>
+                            </li>
+                            <li>
+                                <label for="jobTitle">Title: </label>
+                                <input type="text" id="jobTitle" value={jobTitle} onChange={e => setJobTitle(e.target.value)}></input>
+                            </li>
+                            <li>
+                                <label for="tasks">Job description: </label>
+                                <textarea rows="4" cols="26" id="tasks" value={tasks} onChange={e => setTasks(e.target.value)}></textarea>
+                            </li>
+                            <li>
+                                <label for="from">From: </label>
+                                <input type="date" id="from" value={from} onChange={e => setFrom(e.target.value)}></input>
+                            </li>
+                            <li>
+                                <label for="to">To: </label>
+                                <input type="date" id="to" value={to} onChange={e => setTo(e.target.value)}></input>
+                            </li>
+                        </ul>
+                        <Button text="Confirm"/>
+                    </form>
+                </>
+                :
+                <>
+                    <ul>{experiencesList}</ul>
+                    <Button clickEvent={clickAdd} text="Add"/>
+                </>
+            }
+        </div>
+    );
+}
